@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+
+        body{
+            background-color: rgb(35,35,35);
+        }
+
+        .container{
+            display: flex;
+            flex-direction: column;        
+        }
+        h1{
+            color: darkorange;
+        }
+
+        div.center{
+            margin: auto;
+            width: 530px;
+            height: 450px;
+            border-radius: 10px;
+            align-items: center;
+            background-color: rgb(85,85,85);
+        }
+
+        span{
+            color: darkorange;
+            padding: 0 10px;
+        }
+
+        input{
+            border: none;
+            padding: 5px 0;
+            border-radius: 5px;
+        }
+
+        button{
+            padding: 7px;
+            border: none;
+            color: white;
+            font-size: 1rem;
+            cursor: pointer;
+            border-radius: 5px;
+            background-color: darkorange;
+        }
+
+        .campo-resultado{
+            margin: 3%;
+            height: 250px;
+            width: 200px;
+            border-radius: 5px;
+            background-color: white;
+        }
+
+        .res{
+            margin: 1%;
+            color: white;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Analizando numeros</h1>
+        <div class="center">
+            <p><span>Número entre 1 a 100  </span> <input type="number" name="numero" id="Box-dados">
+            <button type="button" onclick="adicionar()">Adicionar</button></p>
+        <div class="campo-resultado"></div>
+        <button class="limpar" type="button" onclick="finalizar()">Finalizar</button>
+
+        <div class="res"></div>
+    </div>
+    </div>
+    <script>
+        var arrayValores = []
+        var campodigi = document.querySelector("input#Box-dados")
+        var resultados = document.querySelector(".campo-resultado")
+        var lista = document.querySelector(".res")
+
+
+        function adicionar(){
+            arrayValores.push(Number(campodigi.value))
+            let item = document.createElement("p")
+            item.innerHTML = `número ${campodigi.value} adicionado`
+            resultados.appendChild(item)
+            campodigi.value = ''
+            campodigi.focus()            
+        }
+
+        function finalizar(){
+            let total
+            let maiorNum = arrayValores[0]
+            let menorNum = arrayValores[0]
+            let soma = 0
+            let media = 0
+            total = arrayValores.length 
+
+
+            for(let pos in arrayValores){
+                soma += arrayValores[pos]
+                if( arrayValores[pos] > maiorNum){
+                    maiorNum = arrayValores[pos]   
+                }
+                if( arrayValores[pos] < menorNum){
+                    menorNum = arrayValores[pos]
+                }
+                pos++
+            }
+           media = soma / total
+           resultados.innerHTML = ""
+            
+
+            lista.innerHTML = 
+            `quantidade de itens é: ${total}<br>`+ 
+            `O maior número é: ${maiorNum}<br>`+
+            `O menor número é: ${menorNum}<br>`+
+            `A soma dos valores é: ${soma}<br>`+
+            `A média dos valores é: ${media}<br>`
+
+
+        }
+    </script>
+</body>
+</html>

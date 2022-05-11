@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box-images {
+            position: relative;
+            width: 1100px;
+            height: 100vh;
+        }
+
+        .box-images img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: 3s all;
+        }
+
+        .box-images img.selecionada {
+            opacity: 1;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="box-images">
+        <img class="selecionada" src="imagens/pexels-alex-pham-950210.jpg" alt="#">
+        <img src="imagens/pexels-pixabay-158385.jpg" alt="#">
+        <img src="imagens/pexels-pixabay-247431.jpg" alt="#">
+        <img src="imagens/pexels-taryn-elliott-8052673.jpg" alt="#">
+    </div>
+
+    <script>
+        let time = 2000
+
+        posicImagem = 0
+        
+        var imagens = document.querySelectorAll(".box-images img")
+
+        maxItensSlider = imagens.length
+
+        function slider() {
+            imagens[posicImagem].classList.remove("selecionada")
+            posicImagem++
+            if (posicImagem >= maxItensSlider) {
+                posicImagem = 0
+            }
+            imagens[posicImagem].classList.add("selecionada")
+        }
+
+        function startSlider() {
+            setInterval(() => {
+                slider()
+            }, time)
+        }
+        window.addEventListener("load", startSlider())
+    </script>
+</body>
+
+</html>

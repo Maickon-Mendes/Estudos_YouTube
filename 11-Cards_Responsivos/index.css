@@ -1,0 +1,112 @@
+@import url('https://fonts.googleapis.com/css2?family=Geostar&family=Meow+Script&family=Poppins:wght@300;400;500;600&family=Roboto:wght@100;300;400;500;700;900&display=swap');
+
+*{ 
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Poppins,sans-serif;
+}
+
+body{
+    color: #434343;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f6f9ff;
+}
+
+main.cards{
+    padding: 32px;
+    display: flex;
+}
+
+section.card{
+    display: flex;
+    max-height: 256px;
+    margin-left: 20px;
+    border-radius: 8px;
+    text-align: center;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    flex-direction: column;
+    background-color: white;
+}
+
+section.card:first-child{
+    margin-left: 0;
+}
+
+section.card .icon{
+    width: 64px;
+    height: 64px;
+}
+
+section.card img{
+    width: 100%;
+}
+
+section.card h3{
+    font-size: 100%;
+    margin: 16px 0;
+}
+
+section.card span{
+    font-size: 80%;
+    font-weight: 300;
+    max-width: 468x;
+    margin-bottom: 16px;
+}
+
+section.card button{
+    border: 0;
+    font-size: 80%;
+    color: white;
+    cursor: pointer;
+    font-weight: 500;
+    border-radius: 32px;
+    padding: 0.5rem 1rem;
+    text-transform: uppercase;
+}
+
+section.card.contact button{
+    background: linear-gradient(to right, #9f66ff, #dfcbff);
+}
+
+section.card.shop button{
+    background: linear-gradient(to right, #3e8aff, #bbdeff);
+}
+
+section.card.about button{
+    background: linear-gradient(to right, #fe5f8f, #ffc7d9);
+}
+
+section.card.contact{
+    box-shadow: 20px 20px 50px -25px #dbc4ff;
+}
+
+section.card.shop{
+    box-shadow: 20px 20px 50px -25px #afd6ff;
+}
+
+section.card.about{
+    box-shadow: 20px 20px 50px -25px #ffc1d5;
+}
+
+@media screen and  (max-width: 800px){
+    main.cards{
+        flex-direction: column;
+    }
+
+    section.card{
+        margin-left: 0;
+        margin-bottom: 32px;
+    }
+
+    section.card:last-child{
+        margin-bottom: 0;
+    }
+}
+
+/*object-fit*/

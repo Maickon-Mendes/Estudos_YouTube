@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/3df637a2f2.js" crossorigin="anonymous"></script>
+    <title>Calculadora</title>
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'cursiva', sans-serif;
+}
+
+body {
+    background-color: #2ab3a6;
+}
+
+.calculator {
+    width: 250px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 15px;
+    padding: 10px;
+    background-color: #000807;
+}
+
+table td {
+    display: inline-block;
+}
+
+.btn {
+    margin: 3px;
+    width: 50px;
+    height: 40px;
+    cursor: pointer;
+    border: none;
+    background-color: #0C1A21;
+    color: #dfdfdf;
+    font-size: 16px;
+    transition: all 500ms ease-in-out;
+}
+
+.btn:hover {
+    background-color: #162f3b;
+}
+
+.ac {
+    background-color: #1b7269;
+}
+
+.ac:hover {
+    background-color: #228f84;
+}
+
+.especial {
+    background-color: #228f84;
+}
+
+.especial:hover {
+    background-color: #18646b;
+}
+
+.igual {
+    background-color: #1b7269;
+}
+
+.igual:hover {
+    background-color: #25968a;
+
+}
+
+.result {
+    height: 100px;
+    color: #dfdfdf;
+    text-align: right;
+    font-size: 35px;
+    word-wrap: break-word;
+    border-bottom: 1px solid #25968a;
+}
+    </style>
+</head>
+<body>
+    <div class="conteudo">
+        <div class="calculator">
+            <p class="result" id="resultado" >   </p>
+
+            <table>
+                <tr>
+                    <td><button class="btn ac" style="width: 106px;" onclick= "limpar()" > AC </button> </td>   
+
+                    <td><button class="btn neg" onclick= "backspace()" > <i class="fas fa-backspace"></i> </button> </td>     
+
+                    <td><button class="btn especial" onclick= "inserirDado('/')"> <i class="fas fa-divide"></i> </button> </td>     
+                </tr>
+
+                <tr>
+                    <td><button class="btn " onclick= "inserirDado('7')" > 7 </button> </td>     
+                    <td><button class="btn "  onclick= "inserirDado('8')"> 8 </button> </td>     
+                    <td><button class="btn " onclick= "inserirDado('9')"> 9 </button> </td>     
+                    <td><button class="btn especial" onclick= "inserirDado('*')" > x </button> </td>     
+                </tr>
+
+                <tr>
+                    <td><button class="btn " onclick= "inserirDado('4')" > 4 </button> </td>     
+                    <td><button class="btn " onclick= "inserirDado('5')" > 5 </button> </td>     
+                    <td><button class="btn " onclick= "inserirDado('6')"> 6 </button> </td>     
+                    <td><button class="btn especial" onclick= "inserirDado('-')" > - </button> </td>     
+                </tr>
+
+                <tr>
+                    <td><button class="btn " onclick= "inserirDado('1')" > 1 </button> </td>     
+                    <td><button class="btn " onclick= "inserirDado('2')" > 2 </button> </td>     
+                    <td><button class="btn " onclick= "inserirDado('3')"> 3 </button> </td>     
+                    <td><button class="btn especial" onclick= "inserirDado('+')"> + </button> </td>     
+                </tr>
+
+                <tr>
+
+                    <td><button class="btn " onclick= "inserirDado('0')" > 0 </button> </td>     
+                    <td><button class="btn " onclick= "inserirDado('.')" > . </button> </td>          
+                    <td><button class="btn igual" style="width: 106px;" onclick= "calcular()"> = </button> </td>     
+                </tr>
+
+            </table>
+
+
+
+
+        </div>
+    </div>    
+    <script>
+
+const campoRes = document.querySelector(".result")
+
+const btnCalcular = document.querySelector(".igual")
+
+function inserirDado(valor){
+    campoRes.innerHTML += valor
+}
+
+function limpar(){
+    campoRes.innerHTML = ""
+}
+
+function backspace(){
+    if(campoRes.textContent){
+        let intemExcluido = document.querySelector("#resultado").innerHTML
+        campoRes.innerHTML = intemExcluido.substring(0, intemExcluido.length -1)
+    }
+}
+
+function calcular(){
+    if(campoRes.textContent != "Erro"){
+        document.querySelector(".result").innerHTML = eval(campoRes.innerHTML)
+    }
+}
+
+
+
+/*
+const visorCalc = document.querySelector(".result")
+
+const calc = document.querySelector("igual")
+
+function limpar(){
+    visorCalc.innerHTML = ""
+}
+
+function inserirDado(valor){
+    visorCalc.innerHTML += valor
+}
+
+function backspace(){
+    if(visorCalc.textContent){
+    let conteudoVisor = document.getElementById("resultado").innerHTML
+    visorCalc.innerHTML = conteudoVisor.substring(0, conteudoVisor.length -1)
+    // o  ( 0, ) = começe apartir do item 0 do elento, pegue a quantidade de itens e diminua 1
+    }
+        // presisa definir outra variavel pq assim ele meio q subistitue a var antiga pela nova com um valor novo 
+
+}
+
+function calcular(){
+    if(visorCalc.textContent != "Erro"){
+        document.getElementById("resultado").innerHTML = eval(visorCalc.innerHTML) // evel calcula aotomatimamente.
+    }
+        // se pegasse direto o visorCalculadora daria elo pq ele esta no escolpo da função então vai estar sem nem um valor
+
+}
+
+
+
+const resultado = document.querySelector(' .result ');
+const confirmar = document.querySelector(' .igual ');
+
+function insert( valor ){
+    resultado.innerHTML += valor;
+}
+
+function clean() {
+    resultado.innerHTML = ' ';
+}
+
+function backspace() {
+    if(resultado.textContent){
+        let result = document.getElementById('resultado').innerHTML
+        resultado.innerHTML = result.substring(0, result.length - 1);
+    } 
+}
+
+function confirma() {
+    if(resultado.textContent != 'Erro') {
+        document.getElementById("resultado").innerHTML = eval(resultado.innerHTML)
+    }
+}*/
+    </script>
+</body>
+</html>

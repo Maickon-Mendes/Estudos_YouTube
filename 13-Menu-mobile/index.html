@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>landing page</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+</head>
+<body>
+    <section class="sessao1">
+        <img src="imagens/img-fundo.jfif" alt="" class="mosque">
+        <header>
+            <a class="logo" href="">Ramadan</a>
+            <div class="toggle"></div>
+            <nav>
+                <ul class="navigation">
+                    <li><a href="#" class="active">Home</a></li>
+                    <li><a href="#" >About</a></li>
+                    <li><a href="#" >Calendar</a></li>
+                    <li><a href="#" >Blog</a></li>
+                    <li><a href="#" >Contact</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <div class="content">
+            <div class="textBox">
+                <h2>Happy Radan Kareem</h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam deserunt dignissimos totam voluptates! Iste culpa velit, eius recusandae est dolor nihil temporibus quasi numquam optio quae, ab beatae, at a.</p>
+                <a href="#">Read More</a>
+            </div>
+        </div>
+        <ul class="sci">
+            <li><a href=""><i class="fab fa-facebook"></i></a></li>
+            <li><a href=""><i class="fab fa-twitter"></i></a></li>
+            <li><a href=""><i class="fab fa-instagram"></i></a></li>
+        </ul>
+
+    </section>
+    <script>
+        const menuToggle = document.querySelector('.toggle')
+        const navegation = document.querySelector('.navigation')
+        menuToggle.onclick = function(){
+            menuToggle.classList.toggle('active')
+            navegation.classList.toggle('active')
+
+        }
+    </script>
+</body>
+</html>

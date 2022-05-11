@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <h2>Cadastro de imóveis</h2>
+
+    <form action="">
+        <label for="">Tipo:</label>
+        <select name="" id="tipoImovel">
+            <option value="apartamento">apartamento</option>
+            <option value="Casa">Casa</option>
+        </select>
+        <br>
+        <br>
+        <label for="">Area Quadrada: </label><input type="text" name="" id="AreaQuadrada">
+        <br>
+        <br>
+        <input type="checkbox" name="" id="alugado"><label for="">Alugado</label>
+        
+    </form>
+    <br>
+
+    <button id="btnSalvar" onclick="salvar()">Salvar</button>
+    <button id="btnLimpar" onclick="limpar()">Limpar</button>
+
+    <br>
+    <div class="lista">
+        <h3>Imoveis Cadastrados</h3>
+    </div>
+
+    <script>
+ 
+    function salvar(){
+        const btnSalvar = document.querySelector("#btnSalvar")
+        const btnLimpar = document.querySelector("#btnLimpar")
+        
+        const lista = document.querySelector(".lista")
+        const tipoImovel = document.querySelector("#tipoImovel").value
+        const areaQuadrada = document.querySelector("#AreaQuadrada").value
+        var alugado = document.querySelector("#alugado").checked
+        if(alugado == true){
+            alugado = "alugado"
+        }else {
+            alugado = "disponivel"
+        }
+
+        const novoItem = document.createElement("p")
+            lista.appendChild(novoItem)
+            novoItem.innerHTML= `${tipoImovel}, ${areaQuadrada}m², ${alugado} `
+            const btnRemover = document.createElement("button")
+            btnRemover.addEventListener("click",()=>{
+                lista.removeChild(novoItem)
+            })
+            btnRemover.innerText = "Remover"
+            novoItem.appendChild(btnRemover)
+
+             
+        }
+
+       
+
+    </script>
+</body>
+</html>

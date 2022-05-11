@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+}
+
+.container-slide{
+    display: flex;
+    justify-content: space-between;
+    width: 50vw;
+    height: 50vh;
+    background-color: black;
+    margin: 20vh auto;
+    border-radius: 10px;
+    box-shadow: 0 20px 30px black;
+    border: 5px solid black;
+}
+
+.container-items {
+    position: absolute;
+    display: flex;
+    width: 50vw;
+    height: 50vh;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.item {
+    width: 50vw;
+    height: 50vh;
+    transition: all 1s;
+}
+.item:first-child{
+    margin-left: -100%;
+}
+
+.item img {
+    width: 50vw;
+    height: 50vh;
+    border-radius: 10px;
+}
+
+.action-button{
+    font: bold 30px sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    color: #00000000;
+    user-select: none;
+    z-index: 1;
+}
+.action-button{
+    color: white;
+    background-color: #00000055;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 1s;
+}
+    </style>
+</head>
+<body>
+    <div class="container-slide">
+        <div class="action-button" id="previous">&laquo</div>
+        <div class="container-items" id="container-items"></div>
+        <div class="action-button" id="next">&raquo</div>
+
+    </div>
+    <script>
+        'use strict';
+        
+const images = [
+    { 'id': '1', 'url':'./imagens/pexels-george-becker-125576.jpg' },
+    { 'id': '2', 'url':'./imagens/pexels-ino-pascual-4007363.jpg' },
+    { 'id': '3', 'url':'./imagens/pexels-pixabay-38519.jpg' },
+    { 'id': '4', 'url':'./imagens/pexels-yan-krukov-6818102.jpg' }
+]
+
+const containerItems = document.querySelector('#container-items');
+
+const loadImages = ( images, container ) => {
+    images.forEach ( image => {
+        container.innerHTML += `
+            <div class='item'>
+                <img src='${image.url}'
+            </div>
+        `
+    })
+}
+
+loadImages( images, containerItems );
+
+let items = document.querySelectorAll('.item');
+
+const previous = () => {
+    containerItems.appendChild(items[0]);
+    items = document.querySelectorAll('.item');
+}
+
+const next = () => {
+    const lastItem = items[items.length - 1];
+    containerItems.insertBefore( lastItem, items[0] );
+    items = document.querySelectorAll('.item');
+}
+
+document.querySelector('#previous').addEventListener('click', previous);
+document.querySelector('#next').addEventListener('click', next);
+    </script>
+</body>
+</html>

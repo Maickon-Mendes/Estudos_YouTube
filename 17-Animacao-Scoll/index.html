@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Animação por Scroll</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+        integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+    <style>
+
+body {
+	margin: 0px;
+	padding: 40px 0 400px 0;
+	background: #1b1d20;
+}
+
+h1, h2, a {
+	font-family: "Rubik", Helvetica, Arial, sans-serif;
+	color: white;
+	font-weight: normal;
+}
+
+h1 {
+	text-align: center;
+	margin-top: 100px;
+}
+
+p {
+	font-family: "IBM Plex Mono", Helvetica, Arial, sans-serif;
+	font-size: 1em;
+	line-height: 1.5em;
+	color: #b0b2b3;
+}
+
+section {
+	max-width: 600px;
+	margin: 80px auto;
+	padding: 0 20px;
+}
+
+h2::before {
+	content: '';
+	display: inline-block;
+	height: 18px;
+	width: 3px;
+	border-radius: 5px;
+	margin-right: 10px;
+	background-image: linear-gradient(#DDFF01, #2e0);
+}
+
+section > div {
+	margin: 0 20px;
+}
+
+section > a {
+	display: block;
+	max-width: 120px;
+	text-align: center;
+	text-decoration: none;
+	padding: 8px 20px 10px 20px;
+	text-transform: uppercase;
+	background-image: linear-gradient(#9B30F9, #84e);
+	box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);
+	border-radius: 4px;
+	padding: 1em;
+}
+
+section > a:hover {
+	background: #a494f5;
+	color: white;
+}
+
+nav {
+	width: 100%;
+	background: #010101;
+	position: fixed;
+	top: 0;
+	z-index: 100;
+}
+
+nav ul {
+	text-align: center;
+	display: flex;
+	justify-content: center;
+	padding: 0px;
+}
+
+nav a {
+	padding: 10px 20px;
+	text-decoration: none;
+	color: white;
+	font-size: 1.4em;
+}
+
+nav a:hover {
+	color: #a494f5;
+}
+
+.arrow{
+   position: fixed;
+    bottom: 15px;
+    right: 10px;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    margin-left: -20;
+    background-size: 100% 100%;
+    background-image: url(imagens/arrow.png);
+    transform: rotateX(200deg);
+}
+
+.arrow:hover{
+    width: 41px;
+    height: 41px;
+}
+
+    </style>
+</head>
+<body>
+
+    <a href="#">
+        <div class="arrow"> </div>
+    </a>
+   
+
+<nav class="menu">
+	<ul>
+		<li><a href="#js">JS</a></li>
+		<li><a href="#ux">UX</a></li>
+		<li><a href="#css">CSS</a></li>
+		<li><a href="#web">WEB</a></li>
+		<li><a href="#ui">UI</a></li>
+		<li><a href="http://www.google.com">Login</a></li>
+	</ul>
+</nav>
+
+<h1>Cursos de Web Design</h1>
+
+<section id="js">
+	<h2>JavaScript e jQuery</h2>
+	<p>No curso de JavaScript e jQuery você irá aprender como manipular os elementos do DOM a partir de interações do usuário. Primeiro eu começo com os fundamentos do JS, ensinando a sintaxe, variáveis, funções, objetos e outros elementos básicos.</p>
+	<a target="_blank" href="https://www.origamid.com/curso/javascript-e-jquery/">Ver Mais</a>
+</section>
+
+<section id="ux">
+	<h2>UX Design</h2>
+	<p>O curso de UX Design – Heurísticas é focado em dicas que vão melhorar a experiência de uso da interface dos seus projetos. Boa parte das dicas são baseadas em convenções e indicações de grandes nomes como Donald Norman e Jakob Nielsen.</p>
+	<a target="_blank" href="https://www.origamid.com/curso/ux-design-heuristicas/">Ver Mais</a>
+</section>
+
+<section id="css">
+	<h2>CSS com SASS</h2>
+	<p>A primeira parte do curso é focada nos fundamentos do SASS, como instalar ele e como utilizar as suas funções. Na segunda parte vamos para a prática, é nessa parte que você percebe o quanto o SASS é bom.</p>
+	<a target="_blank" href="https://www.origamid.com/curso/css-com-sass/">Ver Mais</a>
+</section>
+
+<section id="web">
+	<h2>Web Design Completo</h2>
+	<p>Este curso é para quem deseja entrar ou já está no mercado de criação de websites. Se você é um iniciante terá a oportunidade de aprender do zero e para os que já trabalham com web design/front end é uma boa oportunidade para se atualizar/aprender uma abordagem diferente.</p>
+	<a target="_blank" href="https://www.origamid.com/curso/web-design-completo/">Ver Mais</a>
+</section>
+
+<section id="ui">
+	<h2>UI Design Avançado</h2>
+	<p>Este é um curso avançado de User Interface Design. Apesar de ser avançado ele também é indicado para iniciantes, pois ensino exatamente tudo do zero, assumo apenas que você já esteja interessado na área de interfaces.</p>
+	<a target="_blank" href="https://www.origamid.com/curso/ui-design-avancado/">Ver Mais</a>
+</section>
+
+<script>
+const menuItems = document.querySelectorAll('.menu a[href^="#"]');
+
+menuItems.forEach(item => {
+  item.addEventListener('click', scrollToIdOnClick);
+})
+
+function getScrollTopByHref(element) {
+  const id = element.getAttribute('href');
+  return document.querySelector(id).offsetTop;
+}
+
+function scrollToIdOnClick(event) {
+  event.preventDefault();
+  const to = getScrollTopByHref(event.target) - 80;
+  scrollToPosition(to);
+}
+
+function scrollToPosition(to) {
+  // window.scroll({
+  //   top: to,
+  //   behavior: "smooth",
+  // });
+  smoothScrollTo(0, to);
+}
+
+
+
+
+
+
+/**
+ * Smooth scroll animation
+ * @param {int} endX: destination x coordinate
+ * @param {int} endY: destination y coordinate
+ * @param {int} duration: animation duration in ms
+ */
+function smoothScrollTo(endX, endY, duration) {
+  const startX = window.scrollX || window.pageXOffset;
+  const startY = window.scrollY || window.pageYOffset;
+  const distanceX = endX - startX;
+  const distanceY = endY - startY;
+  const startTime = new Date().getTime();
+
+  duration = typeof duration !== 'undefined' ? duration : 400;
+
+  // Easing function
+  const easeInOutQuart = (time, from, distance, duration) => {
+    if ((time /= duration / 2) < 1) return distance / 2 * time * time * time * time + from;
+    return -distance / 2 * ((time -= 2) * time * time * time - 2) + from;
+  };
+
+  const timer = setInterval(() => {
+    const time = new Date().getTime() - startTime;
+    const newX = easeInOutQuart(time, startX, distanceX, duration);
+    const newY = easeInOutQuart(time, startY, distanceY, duration);
+    if (time >= duration) {
+      clearInterval(timer);
+    }
+    window.scroll(newX, newY);
+  }, 1000 / 60); // 60 fps
+};</script>
+</body>
+</html>

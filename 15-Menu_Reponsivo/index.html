@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Origamid</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            list-style: none;
+        }
+
+        a{
+            color: rgb(30,30,30);
+            text-decoration: none;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        a:hover{
+            background-color: rgba(0,0,0, .05);
+        }
+
+        #logo{
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+        #header{
+            padding: 1rem;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #e7e7e7;
+        }
+
+        #menu{
+            display: flex;
+            gap: .5rem;
+        }
+
+        #menu a{
+            display: block;
+            padding: .5rem;
+            margin: 0 2rem;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        #btn-mobile{
+            display: none;
+        }
+
+        @media (max-width: 800px){
+
+            #menu{
+            display: block;
+            position: absolute;
+            width: 100%;
+            top: 70px;
+            right: 0;
+            background-color: #e7e7e7;
+            height: 0;
+            z-index: 1000;
+            transition: .6s;
+            visibility: hidden;
+            overflow-y: hidden;
+            }
+ 
+        #nav.active #menu{
+            height: calc(100vh - 70px);
+            visibility: visible;/*como o transition não funciona com o display block essa é uma boa oplção*/
+            overflow-y: auto;/*caso a quantidade de opções seja maior que 100vh vai criar a scrollbar*/
+        }
+
+        #menu a{
+            padding: 1rem 0 ;
+            margin: 0 1rem;
+            border-bottom: 1px solid rgba(0,0,0, .05);
+        }
+
+        #btn-mobile{
+            display: flex;
+            font-size: 1.2rem;
+            border: none;
+            background-color: #e7e7e7;
+            cursor: pointer;
+            padding: .5rem 1rem;
+            gap: .5rem;
+            }
+
+        #hamburger{
+            color: rgb(250, 0, 0);
+            display: block;
+            width: 20px;
+            border-top: 2px solid;
+        }   
+
+        #hamburger::after,  #hamburger::before{
+            content: '';/*para o afiter funcionar ele precisa ter conteudo!  (por isso precisa dessa teg) precisa dar um display block para wue ele funcione*/
+            display: block;
+            width: 20px;
+            height: 2px;
+            background-color: currentColor;/*vai erdar a cor do pai*/
+            margin-top: 5px;
+            transition: .4s;
+            position: relative;
+        }
+
+        #nav.active #hamburger{
+            border-top-color: transparent;
+        }
+
+        #nav.active #hamburger::before{
+            transform: rotate(45deg);
+        }
+
+        #nav.active #hamburger::after{
+            transform: rotate(-45deg);
+            top: -7px;
+        }
+
+        }
+    </style>
+</head>
+<body>
+    <header id="header">
+        <a href="#" id="logo">Logo</a>
+        <nav id="nav">
+            <button id="btn-mobile" aria-label="Abrir menu" aria-haspopup="true" aria-expanded="false">Menu<span id="hamburger"></span></button>
+            <ul id="menu" role="Menu">
+                <li><a href="#">Sobre</a></li>
+                <li><a href="#">Produtos</a></li>
+                <li><a href="#">Portifólio</a></li>
+                <li><a href="#">contatos</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <script>
+        const btnMobile = document.getElementById("btn-mobile")
+        function toggleMenu(event){
+            if(event.type === 'touchstart') event.preventDefault()
+            const nav = document.getElementById('nav')
+            nav.classList.toggle('active')  //toggle quer diser adicione caso não tenha e remova caso tenha
+            const active = nav.classList.contains('active') //o contatains verifica se contain ou não o elemento
+            event.currentTarget.setAttribute('aria-expanded', active)
+            if (active) {event.currentTarget.setAttribute('aria-label', 'Fechar Menu')
+        }else{
+            event.currentTarget.setAttribute('aria-label', 'Abrir menu')
+        }
+        }
+
+        btnMobile.addEventListener('click',toggleMenu)
+        btnMobile.addEventListener('touchstart',toggleMenu)
+    </script>
+</body>
+</html>
